@@ -6,8 +6,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ScaffoldCustom(
-      appBarTitle: 'Home',
+    return ScaffoldCustom(
+      appBarTitle: 'Hair Salon',
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/background.jpg'),
+            fit: BoxFit.cover,
+            opacity: 0.8,
+          ),
+        ),
+      ),
     );
   }
 }

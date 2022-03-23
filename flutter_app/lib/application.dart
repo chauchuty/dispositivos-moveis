@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/page/home.page.dart';
-import 'package:flutter_app/widgets/scaffold.custom.dart';
+import 'package:flutter_app/custom/themeData.custom.dart';
+import 'package:flutter_app/routes/routes.custom.dart';
 
 class Application extends StatelessWidget {
   const Application({Key? key}) : super(key: key);
@@ -8,10 +8,11 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const HomePage(),
+      initialRoute: RoutesCustom.initialRoute,
+      onGenerateRoute: (settings) {
+        return RoutesCustom.routes(settings);
       },
+      theme: ThemeDataCustom.feature(),
       debugShowCheckedModeBanner: false,
     );
   }
