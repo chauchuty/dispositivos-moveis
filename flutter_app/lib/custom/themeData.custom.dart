@@ -10,8 +10,8 @@ class ThemeDataCustom {
         backgroundColor: Colors.grey[850],
       ),
       listTileTheme: const ListTileThemeData(
-        textColor: Colors.white,
-        iconColor: Colors.white,
+        textColor: Colors.black,
+        iconColor: Colors.grey,
       ),
     );
   }

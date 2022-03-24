@@ -20,6 +20,8 @@ class DrawerCustom extends StatelessWidget {
     return ListTile(
       title: Text(title),
       leading: Icon(icon),
+      textColor: Colors.white,
+      iconColor: Colors.white,
       onTap: () {
         Navigator.pushNamed(context, route);
       },

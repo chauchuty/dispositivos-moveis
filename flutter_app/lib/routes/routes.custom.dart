@@ -11,7 +11,7 @@ class RoutesCustom {
       case '/':
         return PageTransitionCustom.featureFade(const HomePage());
       case '/clients':
-        return PageTransitionCustom.featureFade(const ClientsPage());
+        return PageTransitionCustom.featureFade(ClientsPage());
     }
   }
 }

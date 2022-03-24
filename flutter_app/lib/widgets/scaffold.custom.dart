@@ -5,11 +5,13 @@ import 'package:flutter_app/widgets/drawer.custom.dart';
 class ScaffoldCustom extends StatelessWidget {
   final String appBarTitle;
   final Widget body;
+  final FloatingActionButton? floatingActionButton;
 
   const ScaffoldCustom({
     Key? key,
     required this.appBarTitle,
     required this.body,
+    this.floatingActionButton,
   }) : super(key: key);
 
   @override
@@ -20,6 +22,7 @@ class ScaffoldCustom extends StatelessWidget {
       ),
       drawer: const DrawerCustom(),
       body: body,
+      floatingActionButton: floatingActionButton,
     );
   }
 }
