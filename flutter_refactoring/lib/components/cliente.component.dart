@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_refactoring/models/cliente.model.dart';
+import 'package:flutter_refactoring/repositories/cliente.repository.dart';
 import 'package:flutter_refactoring/utilities/snackbar.dart';
 import 'package:flutter_refactoring/utilities/validate.dart';
 import 'package:flutter_refactoring/widgets/app.bar.custom.dart';
@@ -22,6 +23,7 @@ class ClienteComponent extends StatefulWidget {
 }
 
 class _ClienteModalState extends State<ClienteComponent> {
+  final repository = ClienteRepository();
   final _formKey = GlobalKey<FormState>();
   final _nomeC = TextEditingController();
   final _telefoneC = TextEditingController();
@@ -68,9 +70,22 @@ class _ClienteModalState extends State<ClienteComponent> {
           ElevatedButton.icon(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
-                SnackBarCustom.success(context,
-                    message: 'Cadastrado com sucesso!');
-                Navigator.pop(context);
+                print('caiu aqui');
+                repository
+                    .insert(Cliente(
+                        nome: _nomeC.text,
+                        telefone: _telefoneC.text,
+                        email: _emailC.text))
+                    .then((value) {
+                  SnackBarCustom.success(context,
+                      message: 'Cadastrado com sucesso!');
+
+                  Navigator.pop(context);
+                }).catchError((error) {
+                  SnackBarCustom.error(context, message: 'Erro ao cadastrar!');
+                  Navigator.pop(context);
+                });
+
                 return;
               }
               // SnackBarCustom.error(context,

@@ -17,4 +17,11 @@ class Cliente {
         telefone: json["telefone"],
         email: json["email"],
       );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "nome": nome,
+        "telefone": telefone,
+        "email": email,
+      };
 }

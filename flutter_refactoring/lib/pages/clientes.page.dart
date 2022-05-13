@@ -153,6 +153,7 @@ class ClientesPage extends StatelessWidget {
         ),
         TextButton.icon(
           onPressed: () {
+            repository.delete(cliente.id!);
             SnackBarCustom.success(context, message: 'Deletado com sucesso!');
             Navigator.pop(context);
           },

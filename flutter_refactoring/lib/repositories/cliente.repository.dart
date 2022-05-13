@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_refactoring/models/cliente.model.dart';
+import 'package:flutter_refactoring/routes/guard.dart';
 
 abstract class IClienteRepository {
   List<Cliente> getAll();
@@ -10,27 +11,32 @@ abstract class IClienteRepository {
 }
 
 class ClienteRepository {
+  final guard = Guard();
   final dio = Dio();
 
   @override
-  Future<List<Cliente>> getAll() {
-    return dio
-        .get('http://localhost:3001/clientes')
-        .then((response) => response.data)
-        .then((data) => data);
+  Future<List<Cliente>> getAll() async {
+    return await dio.post('http://localhost:3001/clientes', data: {
+      "token": await guard.getToken(),
+    }).then((response) {
+      return response.data
+          .map<Cliente>((cliente) => Cliente.fromJson(cliente))
+          .toList();
+    });
   }
 
-  // @override
-  // Cliente getOne(int id) {
-  //   return clientes[id];
-  // }
-
-  // @override
-  // int insert(Cliente cliente) {
-  //   cliente.id = clientes[clientes.length].id;
-  //   clientes.add(cliente);
-  //   return cliente.id!;
-  // }
+  Future<int> insert(dynamic cliente) async {
+    print('caiu1');
+    return await dio.post('http://localhost:3001/clientes/new', data: {
+      "token": await guard.getToken(),
+      "cliente": cliente.toJson(),
+    }).then((response) {
+      return 1;
+    }).catchError((error) {
+      print(error);
+      return -1;
+    });
+  }
 
   // @override
   // update(data) {
@@ -38,8 +44,13 @@ class ClienteRepository {
   //   throw UnimplementedError();
   // }
 
-  // @override
-  // void delete(int id) {
-  //   clientes.removeAt(id);
-  // }
+  @override
+  void delete(int id) async {
+    return await dio.post('http://localhost:3001/clientes/delete', data: {
+      "token": await guard.getToken(),
+      "id": id,
+    }).then((response) {
+      print(response);
+    });
+  }
 }
