@@ -10,4 +10,11 @@ class Cliente {
     this.telefone,
     this.email,
   });
+
+  factory Cliente.fromJson(Map<String, dynamic> json) => Cliente(
+        id: json["id"],
+        nome: json["nome"],
+        telefone: json["telefone"],
+        email: json["email"],
+      );
 }

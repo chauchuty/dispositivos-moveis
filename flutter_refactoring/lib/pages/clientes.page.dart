@@ -22,13 +22,32 @@ class ClientesPage extends StatelessWidget {
   }
 
   _body(context) {
-    final clientes = repository.getAll();
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        return _listView(context, clientes[index]);
+    return FutureBuilder<List<Cliente>>(
+      future: repository.getAll(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return ListView.builder(
+            itemCount: snapshot.data!.length,
+            itemBuilder: (context, index) {
+              return _listView(context, snapshot.data![index]);
+            },
+          );
+        } else if (snapshot.hasError) {
+          return Center(
+            child: Text('${snapshot.error}'),
+          );
+        }
+        return Center(
+          child: CircularProgressIndicator(),
+        );
       },
-      itemCount: clientes.length,
     );
+    // return ListView.builder(
+    //   itemBuilder: (context, index) {
+    //     return _listView(context, clientes[index]);
+    //   },
+    //   itemCount: clientes.length,
+    // );
   }
 
   _listView(context, Cliente cliente) {

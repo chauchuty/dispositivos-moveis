@@ -47,7 +47,7 @@ class DrawerCustom extends StatelessWidget {
               context,
               title: 'Sair',
               icon: Icons.exit_to_app,
-              route: '/exit',
+              route: '/logout',
             ),
           ],
         ),

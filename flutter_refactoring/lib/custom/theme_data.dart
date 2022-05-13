@@ -3,24 +3,24 @@ import 'package:flutter/material.dart';
 class ThemeDataCustom {
   static light() {
     return ThemeData(
-      fontFamily: 'JosefinsSans',
-      colorScheme: const ColorScheme(
-        brightness: Brightness.light,
-        primary: Colors.white,
-        onPrimary: Color(0xFF222222),
-        secondary: Colors.redAccent,
-        onSecondary: Colors.white,
-        error: Colors.redAccent,
-        onError: Colors.white,
-        background: Colors.redAccent,
-        onBackground: Colors.white,
-        surface: Colors.redAccent,
-        onSurface: Colors.white,
-      ),
-      drawerTheme: const DrawerThemeData(
-        elevation: 0,
-      ),
-    );
+        fontFamily: 'JosefinsSans',
+        colorScheme: const ColorScheme(
+          brightness: Brightness.light,
+          primary: Color(0xFF222222),
+          onPrimary: Colors.white,
+          secondary: Colors.deepPurple,
+          onSecondary: Colors.white,
+          error: Colors.deepPurple,
+          onError: Colors.white,
+          background: Colors.deepPurple,
+          onBackground: Colors.white,
+          surface: Colors.deepPurple,
+          onSurface: Colors.black,
+        ),
+        drawerTheme: const DrawerThemeData(
+          elevation: 0,
+        ),
+        errorColor: Colors.yellowAccent);
   }
 
   static dark() {

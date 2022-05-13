@@ -187,7 +187,7 @@ class _AgendamentoModalState extends State<AgendamentoComponent> {
 
   _itemDropButton() {
     ClienteRepository repository = ClienteRepository();
-    List<Cliente> clientes = repository.getAll();
+    List<Cliente> clientes = [];
 
     return DropdownButtonFormField<Cliente>(
       decoration: const InputDecoration(
